@@ -56,10 +56,8 @@ void to_upper(char str[])
 	int n = StringLength(str);
 	for (int i = 0; i < n; i++)
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 32;
-		if (str[i] >= 'а' && str[i] <= 'я')
-			str[i] -= 32;
+		if (str[i] >= 'a' && str[i] <= 'z')str[i] -= 32;
+		if (str[i] >= 'а' && str[i] <= 'я')str[i] -= 32;
 	}
 }
 
@@ -68,10 +66,8 @@ void to_lower(char str[])
 	int n = StringLength(str);
 	for (int i = 0; i < n; i++)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			str[i] += 32;
-		if (str[i] >= 'А' && str[i] <= 'Я')
-			str[i] += 32;
+		if (str[i] >= 'A' && str[i] <= 'Z')str[i] += 32;
+		if (str[i] >= 'А' && str[i] <= 'Я')str[i] += 32;
 	}
 }
 
