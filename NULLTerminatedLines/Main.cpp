@@ -18,7 +18,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	SetConsoleCP(1251);			//кодировка на ввод с консоли
-	SetConsoleOutputCP(866);	//кодировка на вывод в консоле
+	SetConsoleOutputCP(1251);	//кодировка на вывод в консоле
 	//char str[] = {'H','e','l','l','o',0};
 	//char str[] = "Hello";
 
@@ -35,6 +35,7 @@ void main()
 	//cout << str << endl;
 	//shrink(str);
 	//cout << str << endl;
+	//cin >> str[n];
 	//cout << is_palindrome(str);
 	//cout << is_int_number(str);
 	//cout << is_bin_number(str);
