@@ -5,6 +5,7 @@ using namespace std;
 //#define WRITE_TOFILE
 //#define READ_FROM_FILE
 //#define work201
+#define DZ
 
 int StringLength(char str[]);
 void Proverka(char str[]);
@@ -75,11 +76,13 @@ void main()
 	fout.close();
 	fin.close();
 #endif // work201
+
+#ifdef DZ
 	ifstream fin;
-	char OpenFileName[100] = {};
-	char NewFileName[100] = {};
-	cout << "Введите имя открываемого файла:"; cin.getline(OpenFileName, 100);
-	cout << "Введите имя сохраняемого файла:"; cin.getline(NewFileName, 100);
+	char OpenFileName[256] = {};
+	char NewFileName[256] = {};
+	cout << "Введите имя открываемого файла: "; cin.getline(OpenFileName, 100);
+	cout << "Введите имя сохраняемого файла: "; cin.getline(NewFileName, 100);
 	Proverka(OpenFileName);
 	Proverka(NewFileName);
 	fin.open(OpenFileName);
@@ -91,7 +94,6 @@ void main()
 	char sz_mac_buffer[MAC_SIZE]{};
 
 	int i = 1;
-
 	if (fin.is_open())
 	{
 		while (!fin.eof())
@@ -127,7 +129,31 @@ void main()
 
 	fout.close();
 	fin.close();
-	system("notepad");
+
+	char sz_cmd[256] = "notepad ";
+	strcat(sz_cmd, NewFileName);
+
+	//strcat(sz_dst,sz_src);//strcat выполняет конкатенацию(слияние) строк
+	//например, "Hello"+"World" = "HelloWorld";
+	//sz_dst - строка получатель, в которую будет сохранен результат конкатенации
+	//Source - исходник, источник.
+	//Destination - пункт назначения, получатель.
+	//sz_src - строка источник, которая будет добавлена к получателю
+	
+	// char* extension = strrchr(sz_OpenFileName,'.');
+	// cout <<(extension ? extension : "У файла нет расширения")<<endl;
+	// if(extension == nullptr || strcmp(extension))
+	//char* strchr(char* str, char symbol); - находит указаный символ(symbol) в указаной строке(str) и возвращает указатель на найденный символ. Если указанный символ(symbol) в указанной строке(str) не найден то функция strchr возвращает указатель на ноль(nullptr)
+	//Функция strrchr(char* str) - делает тоже самое но наченая с конца строки
+
+	system(sz_cmd);
+#endif // DZ
+
+	/*const unsigned int SIZE = 256;
+	char sz_filename[SIZE] = {};
+	cout << "Введите имя файла: "; cin.getline(sz_filename, SIZE);
+	ifstream fin(sz_filename);*/
+
 }
 
 int StringLength(char str[])
