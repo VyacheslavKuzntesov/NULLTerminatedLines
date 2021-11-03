@@ -39,19 +39,20 @@ void main()
 	//shrink(str);
 	//cout << str << endl;
 	//cin >> str[n];
-	cout << is_palindrome(str);
+	/*cout << is_palindrome(str);
 	cout << endl;
-	cout << str << endl;
+	cout << str << endl;*/
 	//cout << is_int_number(str);
 	//cout << is_bin_number(str);
 	//cout << is_hex_number(str);
 	//cout << string_to_int(str);
 	//cout << bin_to_int(str);
 	//cout << hex_to_int(str);
-	if (is_palindrome)
+	/*if (is_palindrome)
 	{
 		cout << "true";
-	}
+	}*/
+	cout << is_ip_address(str);
 }
 
 int StringLength(char str[])
@@ -81,7 +82,7 @@ void to_lower(char str[])
 	}
 }
 
-void shrink(char str[],char symbol,int mode)
+void shrink(char str[], char symbol, int mode)
 {
 	int n = StringLength(str);
 	for (int i = 0; i < n; i++)
@@ -113,10 +114,10 @@ bool is_palindrome(char str[])
 {
 	bool palindrome = 1;
 	int n = StringLength(str);
-	for (int i = 0; i <= n; i++,n--)
+	for (int i = 0; i < n; i++, n--)
 	{
-		if (str[i] == ' ')i++;
-		if (str[n - 1] == ' ')n--;
+		while (str[i] == ' ')i++;
+		while (str[n - 1] == ' ')n--;
 		if (str[i] != str[n - 1] && str[i] != (str[n - 1] - 32) && str[i] != (str[n - 1] + 32))
 		{
 			palindrome = 0;
@@ -258,14 +259,13 @@ bool is_mac_address(char str[])
 			this_is_the_mac_address = 0;
 			break;
 		}
-		else
+
+		if (length > 2)
 		{
-			if (length>2)
-			{
-				this_is_the_mac_address = 0;
-				break;
-			}
+			this_is_the_mac_address = 0;
+			break;
 		}
+
 		length++;
 	}
 	return this_is_the_mac_address;
@@ -275,34 +275,48 @@ bool is_ip_address(char str[])
 {
 	int n = StringLength(str);
 	int length = 0;
+	int fragments = 0;
 	bool this_is_the_ip_address = 1;
 	for (int i = 0; i < n; i++)
 	{
 		if (str[i] == '.')
 		{
 			length = 0;
+			fragments++;
+			i++;
 		}
-		else if (str[i] > '9' && str[i] < '0')
+		if (str[i] > '9' && str[i] < '0')
 		{
 			this_is_the_ip_address = 0;
 			break;
 		}
-		else if (length > 3)
+		if (length > 3)
 		{
 			this_is_the_ip_address = 0;
 			break;
 		}
-		if (length == 0 && str[i]>2)
+		if (length == 0 && str[i] > '2')
 		{
+			cout << length;
 			this_is_the_ip_address = 0;
 			break;
 		}
-		if (length == 1 || length == 2 && str[i]>5)
+		if (length == 1 || length == 2)
 		{
-			this_is_the_ip_address = 0;
-			break;
+			if (length == 1 && str[i - 1] == '2' && str[i] > '5')
+			{
+				return false;
+			}
+			if (length == 2 && str[i - 2] == '2' && str[i] > '5')
+			{
+				return false;
+			}
 		}
 		length++;
+	}
+	if (fragments != 3)
+	{
+		return false;
 	}
 	return this_is_the_ip_address;
 }
