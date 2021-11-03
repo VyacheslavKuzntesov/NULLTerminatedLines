@@ -39,7 +39,8 @@ void main()
 	//shrink(str);
 	//cout << str << endl;
 	//cin >> str[n];
-	cout << is_palindrome(str) << endl;
+	cout << is_palindrome(str);
+	cout << endl;
 	cout << str << endl;
 	//cout << is_int_number(str);
 	//cout << is_bin_number(str);
@@ -112,9 +113,10 @@ bool is_palindrome(char str[])
 {
 	bool palindrome = 1;
 	int n = StringLength(str);
-	shrink(str, ' ', 0);
 	for (int i = 0; i <= n; i++,n--)
 	{
+		if (str[i] == ' ')i++;
+		if (str[n - 1] == ' ')n--;
 		if (str[i] != str[n - 1] && str[i] != (str[n - 1] - 32) && str[i] != (str[n - 1] + 32))
 		{
 			palindrome = 0;
