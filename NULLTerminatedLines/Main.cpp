@@ -14,8 +14,8 @@ bool is_hex_number(char str[]);
 int string_to_int(char str[]);
 int bin_to_int(char str[]);
 int hex_to_int(char str[]);
-//bool is_mac_address(char str[]);
-//bool is_ip_address(char str[]);
+bool is_mac_address(char str[]);
+bool is_ip_address(char str[]);
 
 void main()
 {
@@ -264,6 +264,7 @@ bool is_mac_address(char str[])
 				break;
 			}
 		}
+		length++;
 	}
 	return this_is_the_mac_address;
 }
@@ -292,6 +293,7 @@ bool is_ip_address(char str[])
 				break;
 			}
 		}
+		length++;
 	}
 	return this_is_the_ip_address;
 }
