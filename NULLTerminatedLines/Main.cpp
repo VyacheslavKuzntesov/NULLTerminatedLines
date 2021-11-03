@@ -287,13 +287,20 @@ bool is_ip_address(char str[])
 			this_is_the_ip_address = 0;
 			break;
 		}
-		else
+		else if (length > 3)
 		{
-			if (length > 3)
-			{
-				this_is_the_ip_address = 0;
-				break;
-			}
+			this_is_the_ip_address = 0;
+			break;
+		}
+		if (length == 0 && str[i]>2)
+		{
+			this_is_the_ip_address = 0;
+			break;
+		}
+		if (length == 1 || length == 2 && str[i]>5)
+		{
+			this_is_the_ip_address = 0;
+			break;
 		}
 		length++;
 	}
